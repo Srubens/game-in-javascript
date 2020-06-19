@@ -3,12 +3,16 @@
 	"use script";
 
 	window.onload = function(){
-		setInterval(executar, 1000 / 10);
+		setInterval(executar, 1000 / 30);
 	}
 
 	//MOVIMENTACAO DA BOLA
 	let posicaoBolaX = 10;
 	let posicaoBolaY = 10;
+	
+	// VELOCIDADE DA BOLA
+	let velocidadeBolaPosicaoX = 3
+	let velocidadeBolaPosicaoY = 3
 
 	function executar(){
 
@@ -35,10 +39,20 @@
 		$areaDesenho.fillStyle = "red";
 		$areaDesenho.fillRect(posicaoBolaX - diametroBola / 2, posicaoBolaY - diametroBola / 2, diametroBola, diametroBola);
 
-		posicaoBolaX = posicaoBolaX + 1;	
-		posicaoBolaY = posicaoBolaY + 1;	
+		posicaoBolaX = posicaoBolaX + velocidadeBolaPosicaoX;	
+		posicaoBolaY = posicaoBolaY + velocidadeBolaPosicaoY;	
 
 		// console.log($folha,$areaDesenho);
+
+		// VERIFICA A LATERAL SUPERIOR
+		if( posicaoBolaY < 0 && velocidadeBolaPosicaoY < 0 ){
+			velocidadeBolaPosicaoY = -velocidadeBolaPosicaoY
+		}
+
+		// VERIFICA A LATERAL INFERIOR
+		if( posicaoBolaY > alturaCampo && velocidadeBolaPosicaoY > 0 ){
+			velocidadeBolaPosicaoY = -velocidadeBolaPosicaoY
+		}
 
 	}
 
